@@ -1,0 +1,8 @@
+D:\MyProgram\github\fiveStoneChess\五子棋\五子棋\bin\x64\Debug\五子棋.exe.config
+D:\MyProgram\github\fiveStoneChess\五子棋\五子棋\bin\x64\Debug\五子棋.exe
+D:\MyProgram\github\fiveStoneChess\五子棋\五子棋\bin\x64\Debug\五子棋.pdb
+D:\MyProgram\github\fiveStoneChess\五子棋\五子棋\obj\x64\Debug\五子棋.frmGame.resources
+D:\MyProgram\github\fiveStoneChess\五子棋\五子棋\obj\x64\Debug\五子棋.Properties.Resources.resources
+D:\MyProgram\github\fiveStoneChess\五子棋\五子棋\obj\x64\Debug\五子棋.csproj.GenerateResource.Cache
+D:\MyProgram\github\fiveStoneChess\五子棋\五子棋\obj\x64\Debug\五子棋.exe
+D:\MyProgram\github\fiveStoneChess\五子棋\五子棋\obj\x64\Debug\五子棋.pdb
