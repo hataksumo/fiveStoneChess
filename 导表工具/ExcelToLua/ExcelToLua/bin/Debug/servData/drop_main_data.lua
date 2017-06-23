@@ -1,0 +1,43 @@
+local drop_main_data = {}
+
+--======================DROP_MAIN_INFO==========================
+drop_main_data.DROP_MAIN_INFO = {
+	["10001"] = {id = "10001",note = "1阶竞技场掉落包",group_id = "1",strategy_ids = "1,2",is_weight_rectify = false},
+	["10002"] = {id = "10002",note = "2阶竞技场掉落包",group_id = "2",strategy_ids = "4,5",is_weight_rectify = false},
+	["10003"] = {id = "10003",note = "3阶竞技场掉落包",group_id = "3",strategy_ids = "7,8",is_weight_rectify = false},
+	["10004"] = {id = "10004",note = "4阶竞技场掉落包",group_id = "4",strategy_ids = "12",is_weight_rectify = false},
+	["10005"] = {id = "10005",note = "5阶竞技场掉落包",group_id = "5",strategy_ids = "15",is_weight_rectify = false},
+	["10006"] = {id = "10006",note = "6阶竞技场掉落包",group_id = "6",strategy_ids = "18",is_weight_rectify = false},
+	["10007"] = {id = "10007",note = "7阶竞技场掉落包",group_id = "7",strategy_ids = "21",is_weight_rectify = false},
+	["10008"] = {id = "10008",note = "GM_宝箱",group_id = "8",strategy_ids = "-1",is_weight_rectify = false},
+	["10009"] = {id = "10009",note = "1阶大宝箱",group_id = "9",strategy_ids = "3",is_weight_rectify = false},
+	["10010"] = {id = "10010",note = "2阶大宝箱",group_id = "10",strategy_ids = "6",is_weight_rectify = false},
+	["10011"] = {id = "10011",note = "3阶大宝箱",group_id = "11",strategy_ids = "9",is_weight_rectify = false},
+	["10012"] = {id = "10012",note = "4阶大宝箱",group_id = "12",strategy_ids = "13",is_weight_rectify = false},
+	["10013"] = {id = "10013",note = "5阶大宝箱",group_id = "13",strategy_ids = "-1",is_weight_rectify = false},
+	["10014"] = {id = "10014",note = "6阶大宝箱",group_id = "14",strategy_ids = "-1",is_weight_rectify = false},
+	["10015"] = {id = "10015",note = "7阶大宝箱",group_id = "15",strategy_ids = "-1",is_weight_rectify = false},
+	["10016"] = {id = "10016",note = "1阶神奇宝箱保底",group_id = "16",strategy_ids = "-1",is_weight_rectify = false},
+	["10017"] = {id = "10017",note = "2阶神奇宝箱保底",group_id = "16",strategy_ids = "-1",is_weight_rectify = false},
+	["10018"] = {id = "10018",note = "3阶神奇宝箱保底",group_id = "16",strategy_ids = "10,11",is_weight_rectify = false},
+	["10019"] = {id = "10019",note = "4阶神奇宝箱保底",group_id = "16",strategy_ids = "14",is_weight_rectify = false},
+	["10020"] = {id = "10020",note = "5阶神奇宝箱保底",group_id = "16",strategy_ids = "16,17",is_weight_rectify = false},
+	["10021"] = {id = "10021",note = "6阶神奇宝箱保底",group_id = "16",strategy_ids = "19,20",is_weight_rectify = false},
+	["10022"] = {id = "10022",note = "7阶神奇宝箱保底",group_id = "16",strategy_ids = "22,23,24",is_weight_rectify = false},
+	["10023"] = {id = "10023",note = "新手引导",group_id = "1",strategy_ids = "25",is_weight_rectify = false},
+	["10024"] = {id = "10024",note = "组队副本碎片掉落",group_id = "39",strategy_ids = "29",is_weight_rectify = false},
+	["10025"] = {id = "10025",note = "GM_钻石",group_id = "41",strategy_ids = "-1",is_weight_rectify = false},
+	["10026"] = {id = "10026",note = "组队副本1普通掉落",group_id = "42",strategy_ids = "-1",is_weight_rectify = false},
+	["10027"] = {id = "10027",note = "组队副本1困难掉落",group_id = "43",strategy_ids = "-1",is_weight_rectify = false},
+	["10028"] = {id = "10028",note = "组队副本1噩梦掉落",group_id = "44",strategy_ids = "-1",is_weight_rectify = false},
+	["10029"] = {id = "10029",note = "组队副本2普通掉落",group_id = "45",strategy_ids = "-1",is_weight_rectify = false},
+	["10030"] = {id = "10030",note = "组队副本2困难掉落",group_id = "46",strategy_ids = "-1",is_weight_rectify = false},
+	["10031"] = {id = "10031",note = "组队副本2噩梦掉落",group_id = "47",strategy_ids = "-1",is_weight_rectify = false},
+	["10032"] = {id = "10032",note = "组队副本3普通掉落",group_id = "48",strategy_ids = "-1",is_weight_rectify = false},
+	["10033"] = {id = "10033",note = "组队副本3困难掉落",group_id = "49",strategy_ids = "-1",is_weight_rectify = false},
+	["10034"] = {id = "10034",note = "组队副本3噩梦掉落",group_id = "50",strategy_ids = "-1",is_weight_rectify = false},
+	["10035"] = {id = "10035",note = "组队副本普通金币",group_id = "51",strategy_ids = "-1",is_weight_rectify = false},
+	["10036"] = {id = "10036",note = "组队副本困难金币",group_id = "52",strategy_ids = "-1",is_weight_rectify = false},
+	["10037"] = {id = "10037",note = "组队副本噩梦金币",group_id = "53",strategy_ids = "-1",is_weight_rectify = false}
+}
+return drop_main_data

@@ -1,0 +1,11 @@
+﻿<root>
+  <path cli=".\cliData\" serv=".\servData\" excelPath="E:\策划目录\数据中转"/>
+  <cardDesigner path="E:\策划目录\数值设计\卡牌投放.xlsx" sheets="monster;skill;buff;progress"/>
+  <card_data path="E:\策划目录\数据中转\卡牌表.xlsx" sheets="card" />
+  <skill_data path="E:\策划目录\数据中转\卡牌表.xlsx" sheets="skill"/>
+  <buff_data path="E:\策划目录\数据中转\卡牌表.xlsx" sheets="buff"/>
+  <progress_data path="E:\策划目录\数据中转\卡牌表.xlsx" sheets="progress"/>
+  <elo_data path="E:\策划目录\数据中转\竞技场.xlsx" sheets="elo_score;ai_intensity"/>
+</root>
+
+
