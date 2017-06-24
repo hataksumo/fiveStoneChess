@@ -5,11 +5,11 @@ using System.Text;
 
 namespace CCAction
 {
-    abstract class Action
+    abstract class Action : ICloneable
     {
-        public void start(Object v_target)
+        public virtual void start(Object v_target)
         {
-
+            onStart(v_target);
         }
 
         protected virtual void onStart(Object v_target)
@@ -19,8 +19,9 @@ namespace CCAction
 
         public virtual void initWithTarget(Object v_target)
         {
-
+            onInitWithTarget(v_target);
         }
+        protected abstract void onInitWithTarget(Object v_target);
 
         public abstract void step(Object v_target, float v_dt);
         public abstract bool isDone();
@@ -28,6 +29,13 @@ namespace CCAction
         public virtual string ToString()
         {
             return "Action";
+        }
+
+        public abstract object Clone();
+
+        public Action cloneAsAction()
+        {
+            return Clone() as Action;
         }
     }
 
@@ -38,7 +46,7 @@ namespace CCAction
             
         }
 
-        public abstract void Do();
+        public abstract void Do(object v_target);
 
         public override bool isDone()
         {
@@ -51,21 +59,30 @@ namespace CCAction
         }
     }
 
+    abstract class GameObjectActionInstence : ActionInstence
+    {
+        protected override void onInitWithTarget(object v_target)
+        {
+            ClientLog.Assert(v_target is UnityEngine.GameObject, "v_target {0} is not UnityEngine.GameObject", v_target.ToString());
+        }
+    }
+
+
     abstract class ActionInteval : Action
     {
-        protected float m_time;
+        protected float m_fTime;
         public ActionInteval()
         {
-            m_time = 0;
+            m_fTime = 0;
         }
-        public virtual void start(Object v_target)
+        public override void start(Object v_target)
         {
-            m_time = 0;
+            m_fTime = 0;
             onStart(v_target);
         }
         public override void step(Object v_target, float v_dt)
         {
-            m_time += v_dt;
+            m_fTime += v_dt;
             onStep(v_target, v_dt);
         }
         protected abstract void onStep(Object v_target,float v_dt);
@@ -73,23 +90,22 @@ namespace CCAction
 
     abstract class ActionLerp : ActionInteval
     {
-        protected float m_duration;
+        protected float m_fDuration;
         protected ILerpStrategyBase m_lerpStrategy;
         public ActionLerp()
         {
-            m_duration = 0;
+            m_fDuration = 0;
             m_lerpStrategy = null;
         }
         public override void initWithTarget(Object v_target)
         {
             if (m_lerpStrategy == null)
                 m_lerpStrategy = new LinearLerp();
-            onInitWithTarget(v_target);
+            base.initWithTarget(v_target);
         }
-        protected abstract void onInitWithTarget(Object v_target);
         protected override void onStep(object v_target,float v_dt)
         {
-            float t = m_time / m_duration;
+            float t = m_fTime / m_fDuration;
             update(v_target, t);
         }
         public void update(object v_target,float v_t)
@@ -100,12 +116,12 @@ namespace CCAction
         protected abstract void onUpdate(object v_target, float v_t);
         public override bool isDone()
         {
-            return m_time >= m_duration;
+            return m_fTime >= m_fDuration;
         }
 
         public float Duration
         {
-            get { return m_duration; }
+            get { return m_fDuration; }
         }
 
         public ILerpStrategyBase LerpStrategy

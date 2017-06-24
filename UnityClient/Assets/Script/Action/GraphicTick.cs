@@ -7,7 +7,7 @@ namespace CCAction
 {
     class GraphicTick
     {
-        protected List<Object> m_listeners;
+        protected List<Object> m_listListeners;
         public GraphicTick()
         {
 

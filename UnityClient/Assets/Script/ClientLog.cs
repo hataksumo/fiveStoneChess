@@ -24,11 +24,12 @@ static class ClientLog
         Debug.Log(string.Format(v_msg, v_params));
     }
 
-    public static void Assert(bool v_condition, string v_msg, params object[] v_params)
+    public static bool Assert(bool v_condition, string v_msg, params object[] v_params)
     {
         if (!v_condition)
         {
             Error(string.Format(v_msg, v_params));
-        } 
+        }
+        return !v_condition;
     }
 }
