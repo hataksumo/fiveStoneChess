@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.IO;
 using UnityEngine;
+using cc = CCAction;
 
 class NetworkHelpper
 {
@@ -117,7 +118,12 @@ class NetworkHelpper
 
     protected void onReceivedSingleMessage(byte[] v_data)
     {
-        Debug.Log("msg frm srv is "+ System.Text.Encoding.UTF8.GetString(v_data));
+        string msgFrmSrv = System.Text.Encoding.UTF8.GetString(v_data);
+        Debug.Log("msg frm srv is "+ msgFrmSrv);
+        Main.GetInstence().runAction(Main.GetInstence(), cc.CallBack.Create((object v_target) => {
+            Main.GetInstence().showTxtFrmSrv(msgFrmSrv);
+        }
+        ));
     }
 
 

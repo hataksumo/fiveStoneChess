@@ -8,6 +8,10 @@ namespace CCAction
     class ActionManager
     {
         protected List<ActionObject> m_listActionObjects;
+        public ActionManager()
+        {
+            m_listActionObjects = new List<ActionObject>();
+        }
         public ActionObject runAction(Object v_target,Action v_action)
         {
             ActionObject ao = new ActionObject(v_target, v_action);

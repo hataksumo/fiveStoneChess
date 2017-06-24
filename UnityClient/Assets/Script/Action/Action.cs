@@ -26,7 +26,7 @@ namespace CCAction
         public abstract void step(Object v_target, float v_dt);
         public abstract bool isDone();
 
-        public virtual string ToString()
+        public override string ToString()
         {
             return "Action";
         }
@@ -41,6 +41,10 @@ namespace CCAction
 
     abstract class ActionInstence : Action
     {
+        protected override void onStart(object v_target)
+        {
+            Do(v_target);
+        }
         public override void step(object v_target, float v_dt)
         {
             

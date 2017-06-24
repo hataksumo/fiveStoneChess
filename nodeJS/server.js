@@ -12,9 +12,8 @@ http.createServer(function (request, response) {
 var net = require('net');
 var TcpBufferManager = require('./tcpDataManager').TcpBufferManager;
 var tcpBufferManager = new TcpBufferManager();
-var GameManager = require('./gameManager').GameManager;
-var gameManager = new GameManager();
-var Player = require('./player').Player;
+//var GameManager = require('./gameManager').GameManager;
+//var gameManager = new GameManager();
 
 
 var HOST = '127.0.0.1';
