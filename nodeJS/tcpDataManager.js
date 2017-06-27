@@ -30,18 +30,16 @@ class TcpBufferManager
             }
             this.m_endMsg = false;
             var len = v_buff.copy(this.m_buf,this.m_dataLen,readLen,readLen + this.m_bufLen - this.m_dataLen);
-            //console.log("len = "+len);
-
             readLen += len
             this.m_dataLen += len;
             if(this.m_dataLen == this.m_bufLen)
-                this.handleMsg();
+                this.handleMsg(len);
         }
     }
-    handleMsg()
+    handleMsg(v_len)
     {
         console.log(this.m_buf.toString());
-        this.broadcase(this.m_buf.toString());
+        this.broadcase(this.m_buf.toString("utf8",0,v_len));
         this.m_bufLen = 0;
         this.m_dataLen = 0;
         this.m_endMsg = true;

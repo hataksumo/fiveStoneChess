@@ -90,7 +90,7 @@ class NetworkHelpper
         m_memStream.Write(m_byteBuffer, 0, length);
         //Reset to beginning
         m_memStream.Seek(0, SeekOrigin.Begin);
-        while (RemainingBytes() > 2)
+        while (RemainingBytes() > 2)//
         {
             //ushort messageLen = reader.ReadUInt16();
             //@liyy bigendian转化
@@ -101,7 +101,11 @@ class NetworkHelpper
             messageLen = (ushort)(highBit * ebit + lowBit);
             if (RemainingBytes() >= messageLen)
             {
-                onReceivedSingleMessage(m_reader.ReadBytes(messageLen));
+                MemoryStream ms = new MemoryStream(messageLen);
+                BinaryWriter writer = new BinaryWriter(ms);
+                writer.Write(m_reader.ReadBytes(messageLen));
+                ms.Seek(0, SeekOrigin.Begin);
+                onReceivedSingleMessage(messageLen, ms);
             }
             else
             {
@@ -110,17 +114,21 @@ class NetworkHelpper
                 break;
             }
         }
+        
         //Create a new stream with any leftover bytes
         byte[] leftover = m_reader.ReadBytes((int)RemainingBytes());
         m_memStream.SetLength(0);     //Clear
-        m_memStream.Write(leftover, 0, leftover.Length);
+        m_memStream.Write(m_byteBuffer, 0, leftover.Length);
     }
 
-    protected void onReceivedSingleMessage(byte[] v_data)
+    protected void onReceivedSingleMessage(int len,MemoryStream v_ms)
     {
-        string msgFrmSrv = System.Text.Encoding.UTF8.GetString(v_data);
+        BinaryReader r = new BinaryReader(v_ms);
+        byte[] byteMsg = r.ReadBytes(len);
+        string msgFrmSrv = System.Text.Encoding.UTF8.GetString(byteMsg);
         Debug.Log("msg frm srv is "+ msgFrmSrv);
         Main.GetInstence().runAction(Main.GetInstence(), cc.CallBack.Create((object v_target) => {
+            ClientLog.Message("msgFrmSrv is {0}", msgFrmSrv);
             Main.GetInstence().showTxtFrmSrv(msgFrmSrv);
         }
         ));
@@ -142,7 +150,7 @@ class NetworkHelpper
     public void writeData(byte[] v_data)
     {
         MemoryStream ms = null;
-        using (ms = new MemoryStream())
+        using (ms = new MemoryStream(v_data.Length+2))
         {
             ms.Position = 0;
             BinaryWriter writer = new BinaryWriter(ms);
