@@ -118,7 +118,7 @@ class NetworkHelpper
         //Create a new stream with any leftover bytes
         byte[] leftover = m_reader.ReadBytes((int)RemainingBytes());
         m_memStream.SetLength(0);     //Clear
-        m_memStream.Write(m_byteBuffer, 0, leftover.Length);
+        m_memStream.Write(leftover, 0, leftover.Length);
     }
 
     protected void onReceivedSingleMessage(int len,MemoryStream v_ms)
