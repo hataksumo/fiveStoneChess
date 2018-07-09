@@ -1,0 +1,91 @@
+require "Common/define"
+local sproto = require "3rd/sproto/sproto"
+local core = require "sproto.core"
+local print_r = require "3rd/sproto/print_r"
+local eventMgr = require "events"
+
+
+
+HelloSkynetCtrl = {}
+local this = HelloSkynetCtrl
+
+local transform;
+local gameObject;
+local prompt;
+local msgDef = sproto.parse [[
+    .Hello {
+        msg 0 : string 
+    }
+    .sendMsg{
+    	name 0 : string
+    	msg 1 : string 
+	}
+    .chatMsg {
+    	name 0 : string
+    	msg 1 : string
+	}
+]]
+
+
+--logic vars
+local _nickName = ""
+
+
+
+
+
+--构建函数--
+function HelloSkynetCtrl.New()
+	logWarn("HelloSkynetCtrl.New--->>")
+	return this
+end
+
+function HelloSkynetCtrl.Awake()
+	logWarn("HelloSkynetCtrl.Awake--->>")
+	panelMgr:CreatePanel('HelloSkynet', this.OnCreate)
+	eventMgr.AddListener(Protocal.Chat,this.OnChatMsg)
+	eventMgr.AddListener(Protocal.Connect,this.OnConnSuccess)
+
+end
+
+--启动事件--
+function HelloSkynetCtrl.OnCreate(obj)
+	gameObject = obj
+	transform = obj.transform
+	prompt = transform:GetComponent('LuaBehaviour')
+	prompt:AddClick(HelloSkynetPanel.oBtnConnSrv,this.OnConnToSrv)
+	prompt:AddClick(HelloSkynetPanel.oBtnSend,this.SendData)
+end
+
+function HelloSkynetCtrl.OnConnToSrv()
+	AppConst.SocketPort = 8888;
+    AppConst.SocketAddress = "192.168.186.128";
+    networkMgr:SendConnect();
+    _nickName = HelloSkynetPanel.iptNickName.text
+    HelloSkynetPanel.iptNickName.readOnly = true
+    NotifyCtrl.Show("连接服务器","点击这个按钮，应当连接服务器")
+end
+
+function HelloSkynetCtrl.SendData()
+	local strContent = HelloSkynetPanel.GetContent()
+	local ospMsg = msgDef:encode("sendMsg",{name = _nickName,msg = strContent})
+	local buffer = ByteBuffer.New()
+	buffer:WriteShort(Protocal.Message)
+	buffer:WriteShort(MsgType.HelloSkynet)
+	buffer:WriteByte(ProtocalType.SPROTO)
+    buffer:WriteBuffer(ospMsg)
+    networkMgr:SendMessage(buffer)
+end
+
+function HelloSkynetCtrl.OnChatMsg(v_msg)
+	local ospbMsg = msgDef:decode("chatMsg",v_msg)
+	HelloSkynetPanel.AddMsg(ospbMsg.name,ospbMsg.msg)
+	HelloSkynetPanel.ClearChatText()
+end
+
+function HelloSkynetCtrl.OnConnSuccess()
+	local oNotifyPanel = CtrlManager.GetCtrl("Notify")
+	if oNotifyPanel then
+		oNotifyPanel.Awake()
+	end
+end
