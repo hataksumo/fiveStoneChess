@@ -89,6 +89,7 @@ namespace LuaFramework {
         private void test()
         {
             InputField ipt;
+            ByteBuffer bf;
         }
 
     }

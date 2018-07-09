@@ -45,7 +45,6 @@ function HelloSkynetCtrl.Awake()
 	panelMgr:CreatePanel('HelloSkynet', this.OnCreate)
 	eventMgr.AddListener(Protocal.Chat,this.OnChatMsg)
 	eventMgr.AddListener(Protocal.Connect,this.OnConnSuccess)
-
 end
 
 --启动事件--
@@ -61,19 +60,16 @@ function HelloSkynetCtrl.OnConnToSrv()
 	AppConst.SocketPort = 8888;
     AppConst.SocketAddress = "192.168.186.128";
     networkMgr:SendConnect();
-    _nickName = HelloSkynetPanel.iptNickName.text
-    HelloSkynetPanel.iptNickName.readOnly = true
-    NotifyCtrl.Show("连接服务器","点击这个按钮，应当连接服务器")
 end
 
 function HelloSkynetCtrl.SendData()
-	local strContent = HelloSkynetPanel.GetContent()
-	local ospMsg = msgDef:encode("sendMsg",{name = _nickName,msg = strContent})
+	local strContent = HelloSkynetPanel.GetChatContent()
+	local strMsg = msgDef:encode("sendMsg",{name = _nickName,msg = strContent})
 	local buffer = ByteBuffer.New()
-	buffer:WriteShort(Protocal.Message)
-	buffer:WriteShort(MsgType.HelloSkynet)
-	buffer:WriteByte(ProtocalType.SPROTO)
-    buffer:WriteBuffer(ospMsg)
+	--buffer:WriteShort(Protocal.Message)
+	--buffer:WriteShort(Protocal.Chat)
+	--print_raw_string(strMsg)
+    buffer:WriteRawByte(strMsg)
     networkMgr:SendMessage(buffer)
 end
 
@@ -84,8 +80,7 @@ function HelloSkynetCtrl.OnChatMsg(v_msg)
 end
 
 function HelloSkynetCtrl.OnConnSuccess()
-	local oNotifyPanel = CtrlManager.GetCtrl("Notify")
-	if oNotifyPanel then
-		oNotifyPanel.Awake()
-	end
+    _nickName = HelloSkynetPanel.iptNickName.text
+    HelloSkynetPanel.Disable()
+    NotifyCtrl.Show("连接服务器","点击这个按钮，应当连接服务器")
 end

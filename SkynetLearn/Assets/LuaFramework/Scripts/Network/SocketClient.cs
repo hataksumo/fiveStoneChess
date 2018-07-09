@@ -90,6 +90,9 @@ public class SocketClient {
             writer.Write(msglen);
             writer.Write(message);
             writer.Flush();
+            byte[] testByte = ms.ToArray();
+            //Util.CallMethod("Network", "testSrv", testByte);
+           
             if (client != null && client.Connected) {
                 //NetworkStream stream = client.GetStream();
                 byte[] payload = ms.ToArray();

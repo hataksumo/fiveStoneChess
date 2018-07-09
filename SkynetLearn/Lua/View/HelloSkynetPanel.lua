@@ -41,6 +41,10 @@ function HelloSkynetPanel.ClearChatText()
 	this.lblContent.text = ""
 end
 
+function HelloSkynetPanel.Disable()
+	this.iptNickName.readOnly = true
+end
+
 --聊天消息
 function HelloSkynetPanel.AddMsg(v_name,v_msg)
 	table.insert(msgs,{name = v_name, msg = v_msg})

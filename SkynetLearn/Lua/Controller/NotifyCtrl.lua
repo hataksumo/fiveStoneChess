@@ -32,5 +32,5 @@ end
 
 --关闭事件--
 function NotifyCtrl.Close()
-	NotifyView.Close()
+	NotifyPanel.Close()
 end

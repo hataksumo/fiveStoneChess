@@ -172,7 +172,11 @@ public static class CustomSettings
         _GT(typeof(TimerManager)),
         _GT(typeof(ThreadManager)),
         _GT(typeof(NetworkManager)),
-        _GT(typeof(ResourceManager)),		  
+        _GT(typeof(ResourceManager)),
+        //ui
+        _GT(typeof(InputField)),
+        _GT(typeof(Image)),
+        _GT(typeof(RawImage))
     };
 
     public static List<Type> dynamicList = new List<Type>()

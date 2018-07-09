@@ -75,6 +75,11 @@ namespace LuaFramework {
             writer.Write(v);
         }
 
+        public void WriteRawByte(byte[] v) {
+            writer.Write(v);
+        }
+
+
         public void WriteBuffer(LuaByteBuffer strBuffer) {
             WriteBytes(strBuffer.buffer);
         }
@@ -117,6 +122,10 @@ namespace LuaFramework {
         public byte[] ReadBytes() {
             int len = ReadInt();
             return reader.ReadBytes(len);
+        }
+
+        public byte[] ReadRawByte(int v_len) {
+            return reader.ReadBytes(v_len);
         }
 
         public LuaByteBuffer ReadBuffer() {

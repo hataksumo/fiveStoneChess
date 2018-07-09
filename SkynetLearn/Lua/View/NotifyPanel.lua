@@ -31,5 +31,11 @@ end
 
 --单击事件--
 function NotifyPanel.OnDestroy()
-	logWarn("OnDestroy---->>>");
+	logWarn("OnDestroy---->>>")
+end
+
+--初始化
+function NotifyPanel.init(v_strTitle,v_strContent )
+	this.lblTitle.text = v_strTitle
+	this.lblContent.text = v_strContent
 end
