@@ -42,7 +42,7 @@ namespace LuaFramework {
                 go.AddComponent<LuaBehaviour>();
 
                 if (func != null) func.Call(go);
-                Debug.LogWarning("CreatePanel::>> " + name + " " + prefab);
+                Debug.LogWarning("CreatePanel ASYNC_MODE::>> " + name + " " + prefab);
             });
 #else
             GameObject prefab = ResManager.LoadAsset<GameObject>(name, assetName);
@@ -61,11 +61,35 @@ namespace LuaFramework {
 #endif
         }
 
-        /// <summary>
-        /// 关闭面板
-        /// </summary>
-        /// <param name="name"></param>
-        public void ClosePanel(string name) {
+
+        public void CreateThePanel(string v_abname, string v_assetName, string v_panelName, LuaFunction v_func = null)
+        {
+            string assetName = v_assetName;
+            string abName = v_abname.ToLower() + AppConst.ExtName;
+            if (Parent.Find(name) != null) return;
+            ResManager.LoadPrefab(abName, assetName, delegate (UnityEngine.Object[] objs) {
+                if (objs.Length == 0) return;
+                GameObject prefab = objs[0] as GameObject;
+                if (prefab == null) return;
+
+                GameObject go = Instantiate(prefab) as GameObject;
+                go.name = v_panelName;
+                go.layer = LayerMask.NameToLayer("Default");
+                go.transform.SetParent(Parent);
+                go.transform.localScale = Vector3.one;
+                go.transform.localPosition = Vector3.zero;
+                go.AddComponent<LuaBehaviour>();
+
+                if (v_func != null) v_func.Call(go);
+                Debug.LogWarning("CreatePanel::>> " + name + " " + prefab);
+            });
+        }
+
+            /// <summary>
+            /// 关闭面板
+            /// </summary>
+            /// <param name="name"></param>
+            public void ClosePanel(string name) {
             var panelName = name + "Panel";
             var panelObj = Parent.Find(panelName);
             if (panelObj == null) return;

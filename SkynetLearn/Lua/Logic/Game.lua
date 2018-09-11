@@ -43,14 +43,21 @@ function Game.OnInitOK()
     coroutine.start(this.test_coroutine);]]
 
     CtrlManager.Init();
-    local ctrHelloSkynet = CtrlManager.GetCtrl(CtrlNames.HelloSkynet);
-    if ctrHelloSkynet ~= nil then
-        ctrHelloSkynet.Awake()
+    -- local ctrHelloSkynet = CtrlManager.GetCtrl(CtrlNames.HelloSkynet);
+    -- if ctrHelloSkynet ~= nil then
+    --     ctrHelloSkynet.Awake()
+    -- end
+    -- local ctrlNotift = CtrlManager.GetCtrl(CtrlNames.Notify)
+    -- if ctrlNotift ~= nil then
+    --     ctrlNotift.Awake()
+    -- end
+    local ctrArmyEquiptProduct = CtrlManager.GetCtrl(CtrlNames.ArmyEquiptProduct)
+    if ctrArmyEquiptProduct ~= nil then
+        ctrArmyEquiptProduct.Awake()
     end
-    local ctrlNotift = CtrlManager.GetCtrl(CtrlNames.Notify)
-    if ctrlNotift ~= nil then
-        ctrlNotift.Awake()
-    end
+
+
+
 
 
 

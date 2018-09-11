@@ -3,14 +3,16 @@ CtrlNames = {
 	--Prompt = "PromptCtrl",
 	--Message = "MessageCtrl"
 	HelloSkynet = "HelloSkynetCtrl",
-	Notify = "NotifyCtrl"
+	Notify = "NotifyCtrl",
+	ArmyEquiptProduct = "ArmyEquiptProductCtrl"
 }
 
 PanelNames = {
 	--"PromptPanel",	
 	--"MessagePanel",
 	"HelloSkynetPanel",
-	"NotifyPanel"
+	"NotifyPanel",
+	"ArmyEquiptProductPanel"
 }
 
 --协议类型--

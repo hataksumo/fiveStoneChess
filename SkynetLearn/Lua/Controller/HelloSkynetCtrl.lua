@@ -42,7 +42,8 @@ end
 
 function HelloSkynetCtrl.Awake()
 	logWarn("HelloSkynetCtrl.Awake--->>")
-	panelMgr:CreatePanel('HelloSkynet', this.OnCreate)
+	CtrlManager.CreatePanel('HelloSkynet', this.OnCreate)
+	--panelMgr:CreatePanel("HelloSkynet",this.OnCreate)
 	eventMgr.AddListener(Protocal.Chat,this.OnChatMsg)
 	eventMgr.AddListener(Protocal.Connect,this.OnConnSuccess)
 end

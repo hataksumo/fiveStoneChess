@@ -1,10 +1,12 @@
 require "Common/define"
 require "Controller/HelloSkynetCtrl"
 require "Controller/NotifyCtrl"
+require "Controller/ArmyEquiptProductCtrl"
 
 CtrlManager = {};
 local this = CtrlManager;
 local ctrlList = {};	--控制器列表--
+local abAssetCfg = dofile "Config/AbAssetCfg"
 
 
 
@@ -15,6 +17,7 @@ function CtrlManager.Init()
 	--ctrlList[CtrlNames.Message] = MessageCtrl.New();
 	ctrlList[CtrlNames.HelloSkynet] = HelloSkynetCtrl.New();
 	ctrlList[CtrlNames.Notify] = NotifyCtrl.New();
+	ctrlList[CtrlNames.ArmyEquiptProduct] = ArmyEquiptProductCtrl.New()
 	return this;
 end
 
@@ -36,4 +39,13 @@ end
 --关闭控制器--
 function CtrlManager.Close()
 	logWarn('CtrlManager.Close---->>>');
+end
+
+function CtrlManager.CreatePanel(v_strLogicName,v_fnOnCreate)
+	local cfg = abAssetCfg[v_strLogicName]
+	if not cfg then
+		Debug.Err("can't find "..v_strLogicName.."in AbAssetCfg")
+		return 
+	end
+	panelMgr:CreateThePanel(cfg.ab,cfg.asset,cfg.name,v_fnOnCreate)
 end

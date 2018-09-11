@@ -109,6 +109,7 @@ public class Packager
         for (int i = 0; i < files.Length; i++)
         {
             files[i] = files[i].Replace('\\', '/');
+
         }
         AssetBundleBuild build = new AssetBundleBuild();
         build.assetBundleName = bundleName;
@@ -205,6 +206,9 @@ public class Packager
         if (!Directory.Exists(resPath)) Directory.CreateDirectory(resPath);
         AddBuildMap("HelloSkynet" + AppConst.ExtName, "*.prefab", "Assets/UI/prefab/HelloSkynet");
         AddBuildMap("Notify" + AppConst.ExtName, "*.prefab", "Assets/UI/prefab/Notify");
+        AddBuildMap("ArmyEquiptProduct" + AppConst.ExtName, "*.prefab", "Assets/UI/prefab/ArmyEquiptProduct");
+
+
     }
 
 
