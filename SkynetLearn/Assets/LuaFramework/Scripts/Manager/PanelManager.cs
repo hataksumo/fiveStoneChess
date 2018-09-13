@@ -89,7 +89,7 @@ namespace LuaFramework {
             /// πÿ±’√Ê∞Â
             /// </summary>
             /// <param name="name"></param>
-            public void ClosePanel(string name) {
+       public void ClosePanel(string name) {
             var panelName = name + "Panel";
             var panelObj = Parent.Find(panelName);
             if (panelObj == null) return;

@@ -31,9 +31,6 @@ local msgDef = sproto.parse [[
 local _nickName = ""
 
 
-
-
-
 --构建函数--
 function HelloSkynetCtrl.New()
 	logWarn("HelloSkynetCtrl.New--->>")
@@ -44,8 +41,6 @@ function HelloSkynetCtrl.Awake()
 	logWarn("HelloSkynetCtrl.Awake--->>")
 	CtrlManager.CreatePanel('HelloSkynet', this.OnCreate)
 	--panelMgr:CreatePanel("HelloSkynet",this.OnCreate)
-	eventMgr.AddListener(Protocal.Chat,this.OnChatMsg)
-	eventMgr.AddListener(Protocal.Connect,this.OnConnSuccess)
 end
 
 --启动事件--
@@ -53,6 +48,8 @@ function HelloSkynetCtrl.OnCreate(obj)
 	gameObject = obj
 	transform = obj.transform
 	prompt = transform:GetComponent('LuaBehaviour')
+	eventMgr.AddListener(Protocal.Chat,this.OnChatMsg)
+	eventMgr.AddListener(Protocal.Connect,this.OnConnSuccess)
 	prompt:AddClick(HelloSkynetPanel.oBtnConnSrv,this.OnConnToSrv)
 	prompt:AddClick(HelloSkynetPanel.oBtnSend,this.SendData)
 end

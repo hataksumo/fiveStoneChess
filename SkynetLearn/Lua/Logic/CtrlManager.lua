@@ -42,10 +42,12 @@ function CtrlManager.Close()
 end
 
 function CtrlManager.CreatePanel(v_strLogicName,v_fnOnCreate)
+	v_strLogicName = v_strLogicName or "nil"
 	local cfg = abAssetCfg[v_strLogicName]
 	if not cfg then
-		Debug.Err("can't find "..v_strLogicName.."in AbAssetCfg")
+		LogErr("can't find "..v_strLogicName.."in AbAssetCfg")
 		return 
 	end
+	log(cfg.ab," ",cfg.asset," ",cfg.name," ")
 	panelMgr:CreateThePanel(cfg.ab,cfg.asset,cfg.name,v_fnOnCreate)
 end
